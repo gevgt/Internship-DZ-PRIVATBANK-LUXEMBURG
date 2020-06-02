@@ -23,8 +23,26 @@ warnings.simplefilter(action='ignore', category=FutureWarning) #!!!
 ###############################################################################
 
 
+
+
     
 def kennzahlen(x, pf, start="2002-02-14", bm=False):
+    '''
+    Parameters
+    ----------
+    x : DATAFRAME
+        Für Berechnung der Benchmark - Gleichgewichtung der Titel.
+    pf : DATAFRAME
+        Performance der zu testenden Strategie (bereits in anderem Makro errechnet). Index und keine Returns
+    start : STRING , optional
+        Start-Date der Kennzahlenerstellung. The default is "2002-02-14".
+    bm : DATAFRAME, optional
+        DESCRIPTION. The default is False.
+    bm_eigene : BOOLEAN, optional
+        DESCRIPTION. The default is None. Wenn vorhanden, setze auf TRUE
+    Returns
+    -------
+    '''
     
     
     ###########################################################################
@@ -308,7 +326,7 @@ def kennzahlen(x, pf, start="2002-02-14", bm=False):
     ax1.plot(benchmark-1, zorder=2)
     ax1.legend(["Strategie", "Benchmark"])
     ax1.set_xlabel("t")
-    ax1.set_ylabel("returns (%)")    
+    ax1.set_ylabel("returns (in 100%)")    
     
     #2. Achse
     ax2 = ax1.twinx()
@@ -319,7 +337,7 @@ def kennzahlen(x, pf, start="2002-02-14", bm=False):
     
     
     #DataFrame mit den Kennzahlen der beiden Zeitreihen
-    zeilen = np.array(["CAGR (%)", "Standard Deviation (%)", 
+    zeilen = np.array(["CAGR p.a. (%)", "Standard Deviation (%)", 
         "Downside Deviation (%)", "99% VaR für 1 Woche (%)", 
         "Expected Shortfall (%)", "Sharpe Ratio", "Sortino Ratio", 
         "Maximum Drawdown (%)", "Worst Month´s Return (%)", 
